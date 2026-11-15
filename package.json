@@ -7,6 +7,7 @@
     "dev": "tsx watch src/server.ts",
     "build": "node -e \"require('node:fs').rmSync('dist', {recursive:true, force:true})\" && tsc -p tsconfig.build.json",
     "start": "node dist/server.js",
+    "vercel-build": "prisma generate && npm run build",
     "test": "vitest run",
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "db:migrate": "prisma migrate dev",
@@ -14,9 +15,9 @@
     "admin:bootstrap": "tsx src/scripts/bootstrap-admin.ts"
   },
   "dependencies": {
+    "@libsql/client": "^0.15.15",
     "@prisma/adapter-pg": "^7.10.1",
     "@prisma/client": "^7.10.1",
-    "@libsql/client": "^0.15.15",
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.5.0",
     "express": "^4.21.2",

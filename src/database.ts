@@ -9,8 +9,12 @@ export async function openUserRepository(config: AppConfig): Promise<{
   users: UserRepository;
   close: () => Promise<void>;
 }> {
-  if (config.databaseUrl.startsWith("file:")) {
-    return createLibsqlUserRepository(config.databaseUrl);
+  if (
+    config.databaseUrl.startsWith("file:")
+    || config.databaseUrl.startsWith("libsql://")
+    || config.databaseUrl.startsWith("https://")
+  ) {
+    return createLibsqlUserRepository(config.databaseUrl, config.libsqlAuthToken);
   }
 
   const adapter = new PrismaPg({ connectionString: config.databaseUrl });
@@ -20,4 +24,3 @@ export async function openUserRepository(config: AppConfig): Promise<{
     close: () => prisma.$disconnect(),
   };
 }
-

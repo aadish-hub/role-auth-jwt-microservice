@@ -17,11 +17,15 @@ const configSchema = z.object({
     if (value.startsWith("file:")) return value.length > "file:".length;
     try {
       const url = new URL(value);
-      return url.protocol === "postgres:" || url.protocol === "postgresql:";
+      return url.protocol === "postgres:"
+        || url.protocol === "postgresql:"
+        || url.protocol === "libsql:"
+        || url.protocol === "https:";
     } catch {
       return false;
     }
-  }, "must be a file: SQLite URL or PostgreSQL connection URL"),
+  }, "must be a file: SQLite URL, PostgreSQL connection URL, or libSQL/Turso URL"),
+  LIBSQL_AUTH_TOKEN: z.string().optional(),
   JWT_SECRET: z.string().min(32),
   JWT_EXPIRES_IN: z.string()
     .regex(durationPattern)
@@ -46,12 +50,30 @@ const configSchema = z.object({
       path: ["ADMIN_EMAIL"],
     });
   }
+  if (config.NODE_ENV === "production" && config.DATABASE_URL.startsWith("file:")) {
+    context.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: "Production deployments require a persistent hosted database URL",
+      path: ["DATABASE_URL"],
+    });
+  }
+  if (
+    (config.DATABASE_URL.startsWith("libsql://") || config.DATABASE_URL.startsWith("https://"))
+    && !config.LIBSQL_AUTH_TOKEN
+  ) {
+    context.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: "LIBSQL_AUTH_TOKEN is required for a remote libSQL database",
+      path: ["LIBSQL_AUTH_TOKEN"],
+    });
+  }
 });
 
 export type AppConfig = {
   nodeEnv: "development" | "test" | "production";
   port: number;
   databaseUrl: string;
+  libsqlAuthToken?: string;
   jwtSecret: string;
   jwtExpiresIn: string;
   bcryptRounds: number;
@@ -72,6 +94,7 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
     nodeEnv: parsed.data.NODE_ENV,
     port: parsed.data.PORT,
     databaseUrl: parsed.data.DATABASE_URL,
+    libsqlAuthToken: parsed.data.LIBSQL_AUTH_TOKEN,
     jwtSecret: parsed.data.JWT_SECRET,
     jwtExpiresIn: parsed.data.JWT_EXPIRES_IN,
     bcryptRounds: parsed.data.BCRYPT_ROUNDS,

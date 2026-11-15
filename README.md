@@ -20,6 +20,19 @@ Open [http://localhost:3000](http://localhost:3000) to register an account or si
 
 For PostgreSQL, set `DATABASE_URL` to a PostgreSQL connection URL, then run `npx prisma generate` and `npm run db:migrate` during development (`npm run db:deploy` for deployment). `docker compose up -d postgres` starts the included PostgreSQL 16 service if Docker is installed. For production, use a managed PostgreSQL instance and a secret manager; set `NODE_ENV=production`, run `npm run db:deploy`, then `npm run build` and `npm start`. Do not use the example secret or credentials.
 
+### Deploy to Vercel
+
+Import this GitHub repository into Vercel and set the **Root Directory** to the repository root. `vercel.json` sends `/auth/*`, `/admin`, and `/health` to the serverless API while Vercel serves the frontend and assets from `public/`.
+
+Configure these Vercel environment variables for **Production** and **Preview** before deploying:
+
+- `NODE_ENV=production`
+- `JWT_SECRET` — a unique random value of at least 32 characters
+- `DATABASE_URL` — a persistent hosted PostgreSQL URL or a Turso/libSQL URL (`libsql://...`); do not use `file:...` on Vercel because serverless files are ephemeral
+- `LIBSQL_AUTH_TOKEN` — required when using a hosted Turso/libSQL database
+
+Vercel automatically runs the `vercel-build` script. After configuring the variables, redeploy from Vercel. To give an admin role, configure `ADMIN_EMAIL` and `ADMIN_PASSWORD`, and run the bootstrap command against the same hosted database before inviting users. Vercel hosting does not create or provision a database for the app.
+
 If registration or sign-in reports that the authentication database is unavailable, verify the `DATABASE_URL` in the environment used to launch the server. PostgreSQL must be running and migrated when using a PostgreSQL URL. The local SQLite database is initialized automatically.
 
 ## Configuration

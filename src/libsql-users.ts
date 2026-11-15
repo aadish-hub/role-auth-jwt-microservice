@@ -43,7 +43,10 @@ async function findRow(
   return row ? toUserRecord(row) : null;
 }
 
-export async function createLibsqlUserRepository(databaseUrl: string): Promise<{
+export async function createLibsqlUserRepository(
+  databaseUrl: string,
+  authToken?: string,
+): Promise<{
   users: UserRepository;
   close: () => Promise<void>;
 }> {
@@ -52,7 +55,7 @@ export async function createLibsqlUserRepository(databaseUrl: string): Promise<{
     const databasePath = fileURLToPath(new URL(databaseUrl, baseUrl));
     await mkdir(path.dirname(databasePath), { recursive: true });
   }
-  const client = createClient({ url: databaseUrl });
+  const client = createClient({ url: databaseUrl, authToken });
   try {
     await client.execute(`
       CREATE TABLE IF NOT EXISTS users (
