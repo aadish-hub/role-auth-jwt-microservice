@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f6f5f2">
+    <meta name="description" content="A clean, secure-by-design sign-in experience for the Rolebase authentication service.">
+    <title>Rolebase — Welcome back</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <main class="shell">
+      <aside class="story-panel" aria-label="About Rolebase">
+        <a class="brand" href="/" aria-label="Rolebase home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none"><path d="M7 25V7h8.2c5 0 7.8 2.2 7.8 6.2 0 2.8-1.6 4.7-4.4 5.5L25 25h-6.1l-5.8-7H12v7H7Zm5-11h3.1c1.9 0 2.8-.6 2.8-2s-.9-2-2.8-2H12v4Z" fill="currentColor"/><circle cx="24.5" cy="8" r="2.5" fill="#B9F36A"/></svg>
+          </span>
+          <span>rolebase<span class="brand-dot">.</span></span>
+        </a>
+
+        <section class="story-copy">
+          <span class="eyebrow"><span class="eyebrow-dot"></span> AUTHENTICATION, REIMAGINED</span>
+          <h1>One account.<br>Every <span>right</span><br>at your fingertips.</h1>
+          <p>Thoughtful access, built around you. Sign in to pick up right where you left off.</p>
+        </section>
+
+        <div class="story-art" aria-hidden="true">
+          <div class="orbit orbit-one"></div>
+          <div class="orbit orbit-two"></div>
+          <div class="orbit orbit-three"></div>
+          <div class="art-center">
+            <svg viewBox="0 0 90 90" fill="none"><path d="M45 10 69 20v17c0 17-9.9 31.7-24 39C30.9 68.7 21 54 21 37V20l24-10Z" fill="#B9F36A"/><path d="m34 44 7 7 15-17" stroke="#1B2515" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <span class="art-tag tag-top"><span class="tag-pulse"></span> Your space, protected</span>
+          <span class="art-tag tag-bottom">01 &nbsp; SIMPLE BY DESIGN</span>
+          <span class="art-spark spark-one">✳</span>
+          <span class="art-spark spark-two">✳</span>
+        </div>
+
+        <footer class="story-footer">
+          <span><span class="footer-line"></span> MADE FOR THE WAY YOU WORK</span>
+          <span class="footer-version">RB—01</span>
+        </footer>
+      </aside>
+
+      <section class="form-panel">
+        <div class="form-top">
+          <span class="mobile-brand"><span class="brand-mark" aria-hidden="true">R</span> rolebase<span class="brand-dot">.</span></span>
+          <span class="secure-label"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="3" y="7" width="10" height="7" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M5.5 7V5a2.5 2.5 0 1 1 5 0v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> SECURE ACCESS</span>
+        </div>
+
+        <div class="form-content">
+          <div id="auth-view">
+            <div class="form-heading">
+              <span class="section-index">WELCOME TO ROLEBASE <span>— 01</span></span>
+              <h2 id="form-title">Good to have<br>you <span>back.</span></h2>
+              <p id="form-subtitle">Enter your details to sign in to your account.</p>
+            </div>
+
+            <div class="auth-switch" role="tablist" aria-label="Choose sign in or create account">
+              <button id="login-tab" class="switch-button is-active" type="button" role="tab" aria-selected="true">Sign in</button>
+              <button id="register-tab" class="switch-button" type="button" role="tab" aria-selected="false">Create account</button>
+            </div>
+
+            <form id="auth-form" novalidate>
+              <label class="field-label" for="email">EMAIL ADDRESS</label>
+              <div class="input-wrap">
+                <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="2.5" y="4" width="15" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="m3.5 5.5 6.5 5 6.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" maxlength="320" required>
+              </div>
+
+              <div class="password-label-row">
+                <label class="field-label" for="password">PASSWORD</label>
+                <span id="password-hint" class="field-hint">At least 12 characters</span>
+              </div>
+              <div class="input-wrap">
+                <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="3.5" y="8.5" width="13" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M6.5 8.5V6a3.5 3.5 0 1 1 7 0v2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                <input id="password" name="password" type="password" autocomplete="current-password" placeholder="Enter your password" maxlength="128" required>
+                <button id="toggle-password" class="password-toggle" type="button" aria-label="Show password">
+                  <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M2 10s2.9-5 8-5 8 5 8 5-2.9 5-8 5-8-5-8-5Z" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="10" r="2.3" stroke="currentColor" stroke-width="1.5"/></svg>
+                </button>
+              </div>
+
+              <p id="form-error" class="form-message" role="alert" hidden></p>
+              <button id="submit-button" class="submit-button" type="submit">
+                <span id="submit-label">Sign in to your account</span>
+                <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11m0 0-4.5-4.5M15 10l-4.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </form>
+
+            <div class="form-divider"><span>YOUR ACCOUNT, YOUR RULES</span></div>
+            <div class="trust-note">
+              <span class="trust-icon"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2.5 16 5v4.3c0 4.2-2.5 7-6 8.7-3.5-1.7-6-4.5-6-8.7V5l6-2.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="m7.5 10 1.7 1.7 3.4-3.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <span><strong>Private by default.</strong><br>Your password is never shared or shown.</span>
+            </div>
+          </div>
+
+          <div id="account-view" hidden>
+            <div class="form-heading">
+              <span class="section-index">YOUR WORKSPACE <span>— 02</span></span>
+              <h2>You're right<br><span>where you belong.</span></h2>
+              <p>Your account is ready. Here’s your access at a glance.</p>
+            </div>
+            <div class="profile-card">
+              <div class="profile-avatar" id="profile-avatar">R</div>
+              <div class="profile-copy">
+                <span class="profile-label">SIGNED IN AS</span>
+                <strong id="profile-email"></strong>
+                <span id="profile-role" class="role-badge"></span>
+              </div>
+              <span class="online-dot" title="Signed in"></span>
+            </div>
+            <div class="access-card">
+              <div class="access-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 19 6v5c0 5-3 8-7 10-4-2-7-5-7-10V6l7-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <div><strong>Secure session</strong><span>Verified with your access token</span></div>
+              <span class="status-chip">ACTIVE</span>
+            </div>
+            <div id="admin-card" class="admin-card">
+              <div class="admin-card-top">
+                <span class="section-index">ROLE-BASED ACCESS</span>
+                <span class="admin-lock" id="admin-lock"></span>
+              </div>
+              <strong id="admin-title">Admin workspace</strong>
+              <p id="admin-description"></p>
+              <button id="admin-button" class="admin-button" type="button">
+                <span id="admin-button-label"></span>
+                <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11m0 0-4.5-4.5M15 10l-4.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+            <p id="account-message" class="account-message" role="status" hidden></p>
+            <button id="signout-button" class="signout-button" type="button">Sign out <span aria-hidden="true">↗</span></button>
+          </div>
+        </div>
+
+        <footer class="form-footer"><span>© 2026 ROLEBASE</span><span>BUILT WITH CARE <span class="footer-heart">✳</span></span></footer>
+      </section>
+    </main>
+    <script src="/app.js" defer></script>
+  </body>
+</html>
